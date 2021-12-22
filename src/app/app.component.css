@@ -1,0 +1,14 @@
+.container{
+    width: auto;
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container{
+    margin-top: 3px;
+}
+
+button {
+
+    margin-left :10px }
