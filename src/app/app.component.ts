@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from './data.service';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import{MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { PopUpComponent } from './pop-up/pop-up.component';
-
 
 
 @Component({
@@ -13,40 +11,42 @@ import { PopUpComponent } from './pop-up/pop-up.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export interface UsersData {
+  name: string;
+  id: number;
+}
+
+const ELEMENT_DATA: UsersData[] = [
+  {id: 1,first_name:'Sebastian',last_name:'Eschweiler',email:'sebastian@codingthesmartway'},
+  {id: 2,first_name:'Steve',last_name:'Palmer',email:'steve@codingthesmartway'},
+  {id: 3,first_name:'Ann',last_name:'Smith',email:'ann@codingthesmartway'}
+];
   
-  
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
-  
-  
+
+export class AppComponent {
  displayedColumns = ['id','first_name','last_name','email','Action'];
-  dataSource!:MatTableDataSource<any>;
+ dataSource = ELEMENT_DATA;
 
   @ViewChild('paginator') paginator! : MatPaginator; 
   @ViewChild(MatSort) matSort! : MatSort;
-  profileForm: any;
- 
+  @ViewChild(MatTable, { static: true })
+  table!: MatTable<any>;
+
   
-  constructor(private dialogRef : MatDialog,private _service: DataService){}
+  constructor(private dialogRef : MatDialog){}
   
   
-ngOnInit() {
-    this._service.getUserData().subscribe((response:any) =>{
-      this.dataSource = new MatTableDataSource(response);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.matSort;
-    })
-  }
+
   filterData($event : any){
     this.dataSource.filter = $event.target.value;
   }
   
-  openDialog(){
-    
+  openDialog(action: any,obj: { action: any; }){
+    obj.action = action;
+
     this.dialogRef.open(PopUpComponent,{
-      
+    const this.dialogRef = this.dialog.open(PopUpComponent, {
+      width: '250px',  
       data:{
         first_Name:[''],
         last_Name:[''],
@@ -56,10 +56,6 @@ ngOnInit() {
 
     }
 
-    saveForm(){
-      console.log('Form data is ', this.profileForm.value);
-    }
-   
   
 
  

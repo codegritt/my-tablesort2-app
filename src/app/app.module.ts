@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -20,6 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -44,8 +40,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     MatRadioModule,
     MatCardModule,
-    MatButtonModule,
-    AppRoutingModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
